@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Oblique Strategies</title>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var xhr = new XMLHttpRequest();
+      var el = document.getElementById("js-text");
+      xhr.open('GET', 'http://localhost:5000/strategy');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          el.innerText = JSON.parse(xhr.responseText).strategy;
+        } else {
+          el.innerText = xhr.status;
+        }
+      };
+      xhr.send();
+
+      var pattern = Trianglify({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+      document.body.appendChild(pattern.canvas());
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/1.1.0/trianglify.min.js"></script>
+</head>
+<body>
+  <h1>Oblique Strategies</h1>
+  <h2 id="js-text"></h2>
+</body>
+</html>
